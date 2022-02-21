@@ -1,1 +1,1 @@
-# SSAFY_7th_chicken
+# SSAFY_7th_chicken is delicious
