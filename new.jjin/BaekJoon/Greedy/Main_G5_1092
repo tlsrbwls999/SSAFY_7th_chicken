@@ -1,0 +1,60 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Scanner sc=new Scanner(System.in);
+
+        int N =sc.nextInt();
+        sc.nextLine();
+        ArrayList<Integer> ship = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            ship.add(sc.nextInt());
+        }
+
+        int M = sc.nextInt();
+        sc.nextLine();
+        ArrayList<Integer> box = new ArrayList<>();
+        for (int i = 0; i < M; i++) {
+            box.add(sc.nextInt());
+        }
+
+        ship.sort(Collections.reverseOrder());
+        box.sort(Collections.reverseOrder());
+
+
+        if (box.get(0) > ship.get(0)) {
+            System.out.println(-1);
+            System.exit(0);
+        }
+
+        int answer = 0;
+
+        while (true) {
+            int start=0;
+            System.out.println(box);
+            System.out.println(ship);
+            for(int i=0;i<N;i++){  //크레인
+                for(int j=start;j<box.size();j++){  //화물
+                    if(box.get(j)<=ship.get(i)){
+                        box.remove(j);
+                        start=j;
+                        break;
+                    }
+                }
+            }
+            answer++;
+            if(box.isEmpty()){
+                break;
+            }
+            if (box.get(0) > ship.get(0)) {
+                System.out.println(-1);
+                System.exit(0);
+            }
+        }
+        System.out.println(answer);
+
+    }
+
+}
